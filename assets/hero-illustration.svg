@@ -1,0 +1,30 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" rx="40" fill="#060608"/>
+  <rect x="90" y="90" width="1220" height="720" rx="36" fill="url(#bg)"/>
+  <circle cx="1120" cy="224" r="180" fill="#5AC8FA" fill-opacity="0.16"/>
+  <circle cx="292" cy="660" r="220" fill="#A56BFF" fill-opacity="0.16"/>
+  <rect x="280" y="220" width="840" height="460" rx="32" fill="#F5F5F7" fill-opacity="0.96"/>
+  <rect x="324" y="272" width="752" height="336" rx="24" fill="#0A0A0C"/>
+  <rect x="358" y="306" width="344" height="218" rx="22" fill="url(#screen)"/>
+  <rect x="734" y="306" width="274" height="218" rx="22" fill="#111114" stroke="#2C2C30"/>
+  <rect x="766" y="338" width="210" height="24" rx="12" fill="#5AC8FA" fill-opacity="0.85"/>
+  <rect x="766" y="378" width="180" height="16" rx="8" fill="#F5F5F7" fill-opacity="0.74"/>
+  <rect x="766" y="408" width="154" height="16" rx="8" fill="#F5F5F7" fill-opacity="0.5"/>
+  <rect x="358" y="548" width="120" height="16" rx="8" fill="#86868B"/>
+  <rect x="490" y="548" width="188" height="16" rx="8" fill="#86868B" fill-opacity="0.6"/>
+  <path d="M440 450C470 386 520 352 594 352C680 352 742 414 766 486" stroke="#F5F5F7" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="592" cy="430" r="18" fill="#FF6B6B"/>
+  <path d="M950 474C958 452 980 432 1004 432H1042C1065 432 1086 452 1094 474L1110 520H934L950 474Z" fill="#A56BFF"/>
+  <text x="176" y="740" fill="#F5F5F7" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="700" letter-spacing="-2">macOS</text>
+  <text x="176" y="790" fill="#86868B" font-family="Segoe UI, Arial, sans-serif" font-size="24">Sistema operativo con identidad propia</text>
+  <defs>
+    <linearGradient id="bg" x1="180" y1="128" x2="1280" y2="724" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F0F13"/>
+      <stop offset="1" stop-color="#1D1D21"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="358" y1="306" x2="700" y2="524" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5AC8FA"/>
+      <stop offset="1" stop-color="#A56BFF"/>
+    </linearGradient>
+  </defs>
+</svg>

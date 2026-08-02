@@ -1,0 +1,17 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" rx="40" fill="#050505"/>
+  <circle cx="1110" cy="248" r="170" fill="#5AC8FA" fill-opacity="0.16"/>
+  <circle cx="318" cy="694" r="220" fill="#A56BFF" fill-opacity="0.16"/>
+  <rect x="214" y="174" width="972" height="552" rx="34" fill="#F5F5F7"/>
+  <rect x="276" y="242" width="848" height="420" rx="30" fill="#0A0A0C"/>
+  <rect x="340" y="306" width="386" height="280" rx="28" fill="#111114" stroke="#2E2E33" stroke-width="2"/>
+  <rect x="756" y="306" width="300" height="280" rx="28" fill="#111114" stroke="#2E2E33" stroke-width="2"/>
+  <path d="M394 420C446 364 502 336 578 336C648 336 704 362 752 420" stroke="#F5F5F7" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="580" cy="338" r="22" fill="#FF6B6B"/>
+  <rect x="804" y="344" width="204" height="24" rx="12" fill="#5AC8FA"/>
+  <rect x="804" y="388" width="172" height="18" rx="9" fill="#F5F5F7" fill-opacity="0.72"/>
+  <rect x="804" y="422" width="132" height="18" rx="9" fill="#F5F5F7" fill-opacity="0.48"/>
+  <path d="M284 740L1116 740" stroke="#D2D2D8" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 10"/>
+  <text x="214" y="806" fill="#111114" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-1.2">Apple Silicon</text>
+  <text x="214" y="856" fill="#86868B" font-family="Segoe UI, Arial, sans-serif" font-size="24">CPU, GPU, Neural Engine y memoria en uno</text>
+</svg>

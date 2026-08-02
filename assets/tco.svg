@@ -1,0 +1,13 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" rx="40" fill="#F5F5F7"/>
+  <rect x="208" y="176" width="984" height="548" rx="36" fill="#FFFFFF" stroke="#E4E4E8" stroke-width="2"/>
+  <rect x="276" y="248" width="848" height="398" rx="28" fill="#0A0A0C"/>
+  <rect x="340" y="314" width="240" height="266" rx="24" fill="#111114" stroke="#2E2E33"/>
+  <rect x="620" y="314" width="240" height="266" rx="24" fill="#111114" stroke="#2E2E33"/>
+  <rect x="900" y="314" width="160" height="266" rx="24" fill="#111114" stroke="#2E2E33"/>
+  <path d="M400 428H500" stroke="#5AC8FA" stroke-width="14" stroke-linecap="round"/>
+  <path d="M680 428H780" stroke="#A56BFF" stroke-width="14" stroke-linecap="round"/>
+  <path d="M936 428H1000" stroke="#FF6B6B" stroke-width="14" stroke-linecap="round"/>
+  <text x="208" y="802" fill="#111114" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-1.2">Costo total</text>
+  <text x="208" y="852" fill="#86868B" font-family="Segoe UI, Arial, sans-serif" font-size="24">Una inversión que se sostiene con el tiempo</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" rx="40" fill="#050505"/>
+  <rect x="184" y="156" width="1032" height="588" rx="36" fill="#F5F5F7"/>
+  <rect x="256" y="236" width="888" height="420" rx="30" fill="#0A0A0C"/>
+  <rect x="332" y="312" width="236" height="268" rx="24" fill="#111114" stroke="#2E2E33"/>
+  <rect x="612" y="312" width="456" height="268" rx="24" fill="#111114" stroke="#2E2E33"/>
+  <path d="M392 388H476" stroke="#5AC8FA" stroke-width="16" stroke-linecap="round"/>
+  <path d="M392 428H452" stroke="#F5F5F7" stroke-opacity="0.74" stroke-width="12" stroke-linecap="round"/>
+  <path d="M662 372H956" stroke="#A56BFF" stroke-width="14" stroke-linecap="round"/>
+  <path d="M662 418H900" stroke="#F5F5F7" stroke-opacity="0.64" stroke-width="12" stroke-linecap="round"/>
+  <path d="M662 460H840" stroke="#F5F5F7" stroke-opacity="0.46" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="1038" cy="374" r="56" fill="#FF6B6B" fill-opacity="0.18"/>
+  <circle cx="1038" cy="374" r="28" fill="#FF6B6B"/>
+  <text x="184" y="806" fill="#111114" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-1.2">Containers nativos</text>
+  <text x="184" y="856" fill="#86868B" font-family="Segoe UI, Arial, sans-serif" font-size="24">Mac para desarrollar, Linux para ejecutar</text>
+</svg>

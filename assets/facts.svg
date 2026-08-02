@@ -1,0 +1,14 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" rx="40" fill="#F5F5F7"/>
+  <rect x="188" y="156" width="1024" height="588" rx="36" fill="#FFFFFF" stroke="#E4E4E8" stroke-width="2"/>
+  <rect x="256" y="232" width="300" height="220" rx="24" fill="#0A0A0C"/>
+  <rect x="584" y="232" width="300" height="220" rx="24" fill="#111114"/>
+  <rect x="912" y="232" width="220" height="220" rx="24" fill="#0A0A0C"/>
+  <rect x="256" y="488" width="876" height="180" rx="24" fill="#0A0A0C"/>
+  <path d="M330 342H504" stroke="#F5F5F7" stroke-width="16" stroke-linecap="round"/>
+  <path d="M660 342H822" stroke="#F5F5F7" stroke-width="16" stroke-linecap="round"/>
+  <path d="M952 342H1080" stroke="#F5F5F7" stroke-width="16" stroke-linecap="round"/>
+  <path d="M312 580H1046" stroke="#5AC8FA" stroke-width="14" stroke-linecap="round"/>
+  <text x="188" y="806" fill="#111114" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-1.2">Datos rápidos</text>
+  <text x="188" y="856" fill="#86868B" font-family="Segoe UI, Arial, sans-serif" font-size="24">Conexiones que sorprenden y que se recuerdan</text>
+</svg>

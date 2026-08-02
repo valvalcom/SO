@@ -1,0 +1,13 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" rx="40" fill="#050505"/>
+  <rect x="180" y="150" width="1040" height="600" rx="36" fill="#F5F5F7"/>
+  <rect x="250" y="230" width="900" height="440" rx="28" fill="#FFFFFF" stroke="#E4E4E8" stroke-width="2"/>
+  <rect x="320" y="292" width="760" height="316" rx="24" fill="#0A0A0C"/>
+  <rect x="380" y="338" width="120" height="224" rx="16" fill="#5AC8FA"/>
+  <rect x="520" y="338" width="120" height="224" rx="16" fill="#A56BFF"/>
+  <rect x="660" y="338" width="120" height="224" rx="16" fill="#FF6B6B"/>
+  <rect x="800" y="338" width="120" height="224" rx="16" fill="#F5F5F7" fill-opacity="0.72"/>
+  <path d="M352 484H916" stroke="#D2D2D8" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 10"/>
+  <text x="180" y="806" fill="#111114" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-1.2">Comparativa</text>
+  <text x="180" y="856" fill="#86868B" font-family="Segoe UI, Arial, sans-serif" font-size="24">Cada sistema tiene un propósito claro</text>
+</svg>
