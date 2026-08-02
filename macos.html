@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>macOS — Feria de Sistemas Operativos</title>
+    <style>
+        :root {
+            --black: #000000;
+            --near-black: #0a0a0c;
+            --white: #ffffff;
+            --off-white: #f5f5f7;
+            --grey: #86868b;
+            --grey-dark: #1d1d1f;
+            --hairline: rgba(255, 255, 255, 0.12);
+            --hairline-dark: rgba(0, 0, 0, 0.1);
+            --shine1: #ff6b6b;
+            --shine2: #a56bff;
+            --shine3: #5ac8fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: var(--white);
+            color: var(--black);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .mono {
+            font-family: "SF Mono", ui-monospace, "Menlo", "Consolas", monospace;
+        }
+
+        /* ---------- NAV ---------- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            transition: background .4s ease, border-color .4s ease;
+        }
+
+        nav.dark {
+            background: rgba(0, 0, 0, 0.72);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        nav .navlabel {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--black);
+            transition: color .4s ease;
+        }
+
+        nav.dark .navlabel {
+            color: var(--white);
+        }
+
+        /* ---------- SECTION SCAFFOLDING ---------- */
+        section {
+            position: relative;
+            padding: 180px 24px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .bg-white {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .bg-black {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .bg-offwhite {
+            background: var(--off-white);
+            color: var(--black);
+        }
+
+        .eyebrow {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-bottom: 22px;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity .8s ease, transform .8s ease;
+        }
+
+        h1.hero-title {
+            font-size: clamp(52px, 9vw, 120px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.02;
+        }
+
+        h2.section-title {
+            font-size: clamp(36px, 6vw, 72px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            max-width: 900px;
+            margin: 0 auto 28px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .9s cubic-bezier(.16, 1, .3, 1), transform .9s cubic-bezier(.16, 1, .3, 1);
+        }
+
+        p.lede {
+            font-size: clamp(18px, 2.4vw, 26px);
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--grey);
+            max-width: 640px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .9s cubic-bezier(.16, 1, .3, 1) .1s, transform .9s cubic-bezier(.16, 1, .3, 1) .1s;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .9s cubic-bezier(.16, 1, .3, 1), transform .9s cubic-bezier(.16, 1, .3, 1);
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .in .eyebrow,
+        .in.section-title,
+        .in .lede {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 140px;
+            background: linear-gradient(180deg, #000 0%, #060608 55%, #000 100%);
+            color: var(--white);
+        }
+
+        .hero .kicker {
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-bottom: 26px;
+            animation: fadeUp 1s ease .1s both;
+        }
+
+        .hero .hero-name {
+            font-size: clamp(48px, 8vw, 104px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            animation: fadeUp 1.1s ease .2s both;
+        }
+
+        .hero .hero-sub {
+            margin-top: 14px;
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            background: linear-gradient(90deg, var(--shine3), var(--shine2) 45%, var(--shine1) 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeUp 1.2s ease .3s both;
+        }
+
+        .hero .hero-tagline {
+            margin-top: 34px;
+            font-size: clamp(18px, 2.6vw, 26px);
+            color: var(--grey);
+            max-width: 600px;
+            line-height: 1.5;
+            animation: fadeUp 1.3s ease .4s both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* terminal signature element */
+        .terminal {
+            margin-top: 64px;
+            width: min(680px, 90vw);
+            background: #111114;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55);
+            animation: fadeUp 1.4s ease .55s both;
+        }
+
+        .terminal-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: #1b1b1e;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+        }
+
+        .dot.red {
+            background: #ff5f57;
+        }
+
+        .dot.yellow {
+            background: #febc2e;
+        }
+
+        .dot.green {
+            background: #28c840;
+        }
+
+        .terminal-body {
+            padding: 22px 24px 28px;
+            text-align: left;
+            font-size: 14.5px;
+            line-height: 1.9;
+            color: #d6d6d8;
+        }
+
+        .terminal-body .prompt {
+            color: #5ac8fa;
+        }
+
+        .terminal-body .cmd {
+            color: #f5f5f7;
+        }
+
+        .terminal-body .out {
+            color: #86868b;
+        }
+
+        .terminal-body .ok {
+            color: #28c840;
+        }
+
+        .caret {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: #f5f5f7;
+            margin-left: 2px;
+            animation: blink 1s steps(1) infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* ---------- FEATURE GRID ---------- */
+        .grid3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--hairline-dark);
+            max-width: 1100px;
+            margin: 64px auto 0;
+            border: 1px solid var(--hairline-dark);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .bg-black .grid3 {
+            background: var(--hairline);
+            border-color: var(--hairline);
+        }
+
+        .grid-item {
+            background: var(--white);
+            padding: 44px 30px;
+            text-align: left;
+        }
+
+        .bg-black .grid-item {
+            background: var(--near-black);
+        }
+
+        .grid-item .num {
+            font-family: "SF Mono", ui-monospace, monospace;
+            font-size: 13px;
+            color: var(--grey);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .grid-item h3 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 10px;
+        }
+
+        .grid-item p {
+            font-size: 15px;
+            line-height: 1.55;
+            color: var(--grey);
+        }
+
+        @media (max-width:860px) {
+            .grid3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ---------- STAT ROW ---------- */
+        .stat-row {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .num {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .stat .label {
+            margin-top: 8px;
+            font-size: 14px;
+            color: var(--grey);
+            max-width: 180px;
+        }
+
+        /* ---------- COMPARISON TABLE ---------- */
+        .compare-wrap {
+            max-width: 760px;
+            margin: 56px auto 0;
+            text-align: left;
+            border-top: 1px solid var(--hairline);
+        }
+
+        .compare-row {
+            display: grid;
+            grid-template-columns: 1fr 90px 90px;
+            align-items: center;
+            padding: 20px 8px;
+            border-bottom: 1px solid var(--hairline);
+            font-size: 16px;
+        }
+
+        .compare-row .label {
+            color: var(--grey);
+            font-size: 14px;
+        }
+
+        .compare-row .center {
+            text-align: center;
+        }
+
+        .check {
+            color: #30d158;
+            font-size: 18px;
+        }
+
+        .cross {
+            color: #4a4a4d;
+            font-size: 18px;
+        }
+
+        .compare-head {
+            display: grid;
+            grid-template-columns: 1fr 90px 90px;
+            padding: 0 8px 14px;
+            font-size: 13px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--grey);
+        }
+
+        .compare-head .center {
+            text-align: center;
+        }
+
+        /* ---------- COMPARE 3-COL (macOS / Windows / Linux) ---------- */
+        .compare-row3 {
+            display: grid;
+            grid-template-columns: 1fr 74px 74px 74px;
+            align-items: center;
+            padding: 18px 8px;
+            border-bottom: 1px solid var(--hairline);
+            font-size: 15px;
+            text-align: left;
+        }
+
+        .compare-head3 {
+            display: grid;
+            grid-template-columns: 1fr 74px 74px 74px;
+            padding: 0 8px 14px;
+            font-size: 12px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--grey);
+        }
+
+        .compare-head3 .center,
+        .compare-row3 .center {
+            text-align: center;
+        }
+
+        /* ---------- QUICK FACTS CHIPS ---------- */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            max-width: 760px;
+            margin: 56px auto 0;
+            text-align: left;
+        }
+
+        .fact-chip {
+            border: 1px solid var(--hairline-dark);
+            border-radius: 14px;
+            padding: 22px 24px;
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .bg-black .fact-chip {
+            border-color: var(--hairline);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .fact-chip .fact-num {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 6px;
+        }
+
+        .fact-chip .fact-label {
+            font-size: 13.5px;
+            color: var(--grey);
+            line-height: 1.5;
+        }
+
+        @media (max-width:640px) {
+            .facts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .compare-row3,
+            .compare-head3 {
+                grid-template-columns: 1fr 56px 56px 56px;
+                font-size: 13px;
+            }
+        }
+
+        /* ---------- QR CALLOUT ---------- */
+        .qr-note {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+            font-size: 13px;
+            color: var(--grey);
+            letter-spacing: 0.02em;
+        }
+
+        /* ---------- DIVIDER META ---------- */
+        .meta-line {
+            margin-top: 26px;
+            font-size: 13px;
+            color: var(--grey);
+            letter-spacing: 0.02em;
+        }
+
+        /* ---------- CODE INLINE ---------- */
+        .kbd {
+            font-family: "SF Mono", ui-monospace, monospace;
+            background: rgba(120, 120, 128, 0.16);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.85em;
+        }
+
+        .bg-black .kbd {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: var(--black);
+            color: var(--grey);
+            text-align: center;
+            padding: 70px 24px 40px;
+            font-size: 13px;
+            border-top: 1px solid var(--hairline);
+        }
+
+        footer .foot-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        footer .foot-sub {
+            max-width: 420px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        footer .foot-note {
+            margin-top: 36px;
+            color: #525254;
+        }
+
+        /* ---------- SIGNATURE: APPLE INTELLIGENCE GLOW TEXT ---------- */
+        .glow-text {
+            background: linear-gradient(90deg, var(--shine3), var(--shine2) 40%, var(--shine1) 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        ::selection {
+            background: #000;
+            color: #fff;
+        }
+
+        .bg-black ::selection {
+            background: #fff;
+            color: #000;
+        }
+
+        @media (max-width:600px) {
+            section {
+                padding: 110px 20px;
+            }
+
+            .stat-row {
+                gap: 40px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.001ms !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="nav"><span class="navlabel">Stand macOS · Feria de Sistemas Operativos</span></nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="kicker">Feria de Sistemas Operativos · Universidad</div>
+        <div class="hero-name">macOS</div>
+        <div class="hero-sub">Más allá de la manzana.</div>
+        <p class="hero-tagline">Llegaste escaneando el QR del stand. Aquí está todo lo que no alcanzamos a contarte en
+            la conversación — con datos, curiosidades y por qué este sistema operativo importa.</p>
+
+        <div class="terminal">
+            <div class="terminal-bar">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div class="terminal-body mono">
+                <div><span class="prompt">~ %</span> <span class="cmd">uname -a</span></div>
+                <div class="out">Darwin macOS 24.0.0 XNU_ARM64 arm64</div>
+                <div style="margin-top:10px;"><span class="prompt">~ %</span> <span class="cmd">echo
+                        $UNIX_CERTIFIED</span></div>
+                <div class="ok">true — Single UNIX Specification, The Open Group, desde 2007</div>
+                <div style="margin-top:10px;"><span class="prompt">~ %</span> <span class="caret"></span></div>
+            </div>
+        </div>
+
+        <div class="qr-note">📍 Contenido del stand macOS — feria de sistemas operativos</div>
+    </section>
+
+    <!-- UNIX / DARWIN -->
+    <section class="bg-white">
+        <div class="eyebrow reveal">Dato curioso #1</div>
+        <h2 class="section-title reveal">No es &quot;parecido&quot; a Unix.<br>Es Unix, con certificado.</h2>
+        <p class="lede reveal">Desde 2007, macOS está certificado oficialmente por The Open Group bajo la Single UNIX
+            Specification — el mismo sello que llevan sistemas como AIX o Solaris. La mayoría de la gente no lo sabe, ni
+            siquiera muchos que lo usan a diario.</p>
+
+        <div class="grid3 reveal">
+            <div class="grid-item">
+                <span class="num">01</span>
+                <h3>Mach 3.0</h3>
+                <p>Un microkernel diseñado en la Universidad Carnegie Mellon en los años 80. Gestiona tareas, memoria y
+                    comunicación entre procesos.</p>
+            </div>
+            <div class="grid-item">
+                <span class="num">02</span>
+                <h3>BSD</h3>
+                <p>El modelo de seguridad y buena parte de las redes vienen directamente de FreeBSD, el mismo linaje que
+                    usan otros sistemas Unix.</p>
+            </div>
+            <div class="grid-item">
+                <span class="num">03</span>
+                <h3>Apple</h3>
+                <p>La capa propia: controladores de hardware y APFS, el sistema de archivos que hace que todo se sienta
+                    como un solo bloque.</p>
+            </div>
+        </div>
+        <p class="meta-line reveal">Este kernel híbrido se llama <span class="kbd">XNU</span> — sí, las siglas
+            significan &quot;X is Not Unix&quot;, un chiste interno que terminó certificado como Unix real.</p>
+    </section>
+
+    <!-- APFS -->
+    <section class="bg-black">
+        <div class="eyebrow reveal">Dato curioso #2</div>
+        <h2 class="section-title reveal">Copiar un archivo de 10 GB<br>tarda lo mismo que uno de 1 KB.</h2>
+        <p class="lede reveal">APFS (Apple File System) no duplica los datos al copiar: crea una referencia instantánea.
+            Y antes de cada actualización de macOS, guarda una instantánea completa del sistema — si algo sale mal,
+            vuelve atrás como si nunca hubiera pasado.</p>
+
+        <div class="stat-row reveal">
+            <div class="stat">
+                <div class="num glow-text">0s</div>
+                <div class="label">para clonar un archivo — solo se crea una referencia, sin duplicar datos</div>
+            </div>
+            <div class="stat">
+                <div class="num glow-text">XTS-AES-128</div>
+                <div class="label">cifrado a nivel de bloque, activo por defecto en Apple Silicon</div>
+            </div>
+            <div class="stat">
+                <div class="num glow-text">Secure Enclave</div>
+                <div class="label">un chip aparte que ni macOS puede leer directamente</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEMORY / GCD -->
+    <section class="bg-offwhite">
+        <div class="eyebrow reveal">Dato curioso #3</div>
+        <h2 class="section-title reveal">Tu Mac nunca dice<br>&quot;memoria llena&quot; tan rápido como debería.</h2>
+        <p class="lede reveal">Antes de mandar datos al disco (lento), macOS los comprime directamente en la memoria RAM
+            (rápido). Y un framework llamado Grand Central Dispatch reparte automáticamente el trabajo entre todos los
+            núcleos del procesador, sin que ninguna app tenga que pedirlo.</p>
+
+        <div class="grid3 reveal">
+            <div class="grid-item">
+                <span class="num">→</span>
+                <h3>Compresión de memoria</h3>
+                <p>En vez de swapear agresivamente al disco, macOS comprime en RAM antes de tocar el almacenamiento.</p>
+            </div>
+            <div class="grid-item">
+                <span class="num">→</span>
+                <h3>Páginas de 16 KB</h3>
+                <p>En Apple Silicon, cuatro veces el tamaño estándar de Intel (4 KB). Menos overhead de gestión.</p>
+            </div>
+            <div class="grid-item">
+                <span class="num">→</span>
+                <h3>Sandboxing</h3>
+                <p>Cada app vive en su propio contenedor aislado. Si una se compromete, el daño no sale de ahí.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEGURIDAD -->
+    <section class="bg-white">
+        <div class="eyebrow reveal">Dato curioso #4</div>
+        <h2 class="section-title reveal">Cinco capas de defensa,<br>una encima de la otra.</h2>
+        <p class="lede reveal">¿macOS es más seguro porque tiene menos usuarios, o porque su arquitectura es mejor? Las
+            dos cosas son ciertas — y ninguna anula a la otra.</p>
+
+        <div class="facts-grid reveal">
+            <div class="fact-chip">
+                <div class="fact-num">SIP</div>
+                <div class="fact-label">Protege los archivos del sistema incluso de cuentas con permisos de
+                    administrador.</div>
+            </div>
+            <div class="fact-chip">
+                <div class="fact-num">Gatekeeper</div>
+                <div class="fact-label">Verifica que cada app esté firmada y notarizada por Apple antes de abrirla.
+                </div>
+            </div>
+            <div class="fact-chip">
+                <div class="fact-num">XProtect</div>
+                <div class="fact-label">Antivirus integrado que se actualiza en segundo plano, sin pedirte nada.</div>
+            </div>
+            <div class="fact-chip">
+                <div class="fact-num">FileVault</div>
+                <div class="fact-label">Cifra el disco completo — si pierdes el equipo, nadie puede leer tus datos.
+                </div>
+            </div>
+        </div>
+        <p class="meta-line reveal">Ninguna de estas capas es infalible: el phishing y el clic accidental siguen siendo
+            la puerta de entrada más común, en cualquier sistema operativo.</p>
+    </section>
+
+    <!-- APPLE SILICON -->
+    <section class="bg-black">
+        <div class="eyebrow reveal">Dato curioso #5</div>
+        <h2 class="section-title reveal">Un solo chip hace el trabajo<br>de cuatro piezas distintas.</h2>
+        <p class="lede reveal">CPU, GPU, Neural Engine y memoria comparten el mismo sustrato de silicio — nada de bus
+            que cruzar entre componentes. Por eso una laptop delgada compite con torres de escritorio consumiendo una
+            fracción de la energía.</p>
+
+        <div class="stat-row reveal">
+            <div class="stat">
+                <div class="num">20–30W</div>
+                <div class="label">de consumo en carga, frente a 250–400W de una GPU discreta equivalente</div>
+            </div>
+            <div class="stat">
+                <div class="num">38 TOPS</div>
+                <div class="label">del Neural Engine de 16 núcleos en la familia M4, dedicado solo a IA</div>
+            </div>
+            <div class="stat">
+                <div class="num">24h</div>
+                <div class="label">de batería en uso real, sin enchufar el equipo en todo el día</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MULTIMEDIA -->
+    <section class="bg-offwhite">
+        <div class="eyebrow reveal">Dato curioso #6</div>
+        <h2 class="section-title reveal">Un video 4K que tarda 2:30<br>en otros equipos, aquí tarda 45s.</h2>
+        <p class="lede reveal">Final Cut Pro, el editor profesional de Apple, aprovecha motores de video dedicados
+            dentro del propio chip para acelerar la exportación — sin depender de una tarjeta gráfica externa.</p>
+
+        <div class="facts-grid reveal">
+            <div class="fact-chip">
+                <div class="fact-num">Metal</div>
+                <div class="fact-label">API gráfica de bajo nivel que da acceso directo al GPU para renderizado en
+                    tiempo real.</div>
+            </div>
+            <div class="fact-chip">
+                <div class="fact-num">ProRes</div>
+                <div class="fact-label">Códec profesional de Apple, con soporte nativo hasta la calidad 4444XQ.</div>
+            </div>
+            <div class="fact-chip">
+                <div class="fact-num">Neural Engine</div>
+                <div class="fact-label">Se usa incluso para transcribir audio a subtítulos automáticamente.</div>
+            </div>
+            <div class="fact-chip">
+                <div class="fact-num">Memoria unificada</div>
+                <div class="fact-label">CPU, GPU y Neural Engine acceden a los mismos datos sin copiarlos entre sí.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ECOSISTEMA / CONTINUITY -->
+    <section class="bg-white">
+        <div class="eyebrow reveal">Dato curioso #7</div>
+        <h2 class="section-title reveal">Empiezas un correo en el iPhone.<br>Lo terminas en el Mac.</h2>
+        <p class="lede reveal">Continuity es el conjunto de funciones que hace que los dispositivos Apple se sientan
+            como uno solo, sin cables ni configuración adicional.</p>
+
+        <div class="grid3 reveal">
+            <div class="grid-item">
+                <span class="num">↻</span>
+                <h3>Handoff</h3>
+                <p>Empiezas una tarea en un dispositivo y la continúas en otro exactamente donde la dejaste.</p>
+            </div>
+            <div class="grid-item">
+                <span class="num">↻</span>
+                <h3>AirDrop</h3>
+                <p>Compartes archivos entre dispositivos Apple cercanos arrastrando y soltando, sin redes ni cables.</p>
+            </div>
+            <div class="grid-item">
+                <span class="num">↻</span>
+                <h3>Universal Clipboard</h3>
+                <p>Copias texto o una imagen en un dispositivo y la pegas en otro, como si fuera el mismo portapapeles.
+                </p>
+            </div>
+        </div>
+        <p class="meta-line reveal">También está <span class="kbd">Sidecar</span> (usar el iPad como segunda pantalla) e
+            <span class="kbd">iCloud</span>, que sincroniza todo en segundo plano.
+        </p>
+    </section>
+
+    <!-- CONTAINER MACHINE -->
+    <section class="bg-white">
+        <div class="eyebrow reveal">Novedad 2026 · Para quienes programan</div>
+        <h2 class="section-title reveal">Escribe en Mac.<br>Ejecuta en Linux.<br>Sin salir de tu Mac.</h2>
+        <p class="lede reveal">Presentado en la WWDC 2026, Container Machine trae un entorno Linux nativo a macOS — algo
+            parecido a lo que WSL hace en Windows. El código se prueba en un entorno idéntico al del servidor real, sin
+            instalar máquinas virtuales pesadas.</p>
+
+        <div class="terminal" style="margin:56px auto 0; background:#0d0d0f;">
+            <div class="terminal-bar">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div class="terminal-body mono">
+                <div><span class="prompt">~ %</span> <span class="cmd">container run --distro ubuntu ./build.sh</span>
+                </div>
+                <div class="out">→ construyendo en entorno Linux nativo…</div>
+                <div class="ok">✓ build completado — idéntico a producción</div>
+            </div>
+        </div>
+        <p class="meta-line reveal">La filosofía de Apple es clara: Mac para escribir el código, Linux para ejecutarlo
+            en producción.</p>
+    </section>
+
+    <!-- XCODE -->
+    <section class="bg-black">
+        <div class="eyebrow reveal">Xcode</div>
+        <h2 class="section-title reveal">Si quieres publicar<br>una app de iPhone, empiezas aquí.</h2>
+        <p class="lede reveal">Xcode es el único camino oficial para publicar en la App Store: sin Mac, no hay firma, no
+            hay compilación, no hay app. Y desde su versión 26, incorpora agentes de código con soporte para modelos
+            como Claude.</p>
+
+        <div class="grid3 reveal">
+            <div class="grid-item">
+                <span class="num">✦</span>
+                <h3>Coding Agents</h3>
+                <p>Instrucciones en lenguaje natural para escribir, depurar y modificar código automáticamente.</p>
+            </div>
+            <div class="grid-item">
+                <span class="num">✦</span>
+                <h3>Simuladores</h3>
+                <p>Prueba una app en distintos modelos de iPhone o iPad sin tener el dispositivo físico en la mano.</p>
+            </div>
+            <div class="grid-item">
+                <span class="num">✦</span>
+                <h3>SwiftUI Previews</h3>
+                <p>Ves cómo cambia la interfaz mientras escribes el código, en tiempo real, sin recompilar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COSTOS / TCO -->
+    <section class="bg-offwhite">
+        <div class="eyebrow reveal">Dato curioso #8</div>
+        <h2 class="section-title reveal">La etiqueta de precio<br>no cuenta toda la historia.</h2>
+        <p class="lede reveal">Un Mac cuesta más al comprarlo. Pero un estudio de Forrester midió el costo total de
+            tenerlo durante cinco años — mantenimiento, reventa, soporte técnico incluidos — y el resultado sorprende.
+        </p>
+
+        <div class="stat-row reveal">
+            <div class="stat">
+                <div class="num">$547</div>
+                <div class="label">de ahorro en costo total a 5 años frente a un PC equivalente</div>
+            </div>
+            <div class="stat">
+                <div class="num">186%</div>
+                <div class="label">de retorno de inversión estimado en ese mismo estudio</div>
+            </div>
+            <div class="stat">
+                <div class="num">5–7 años</div>
+                <div class="label">de vida útil promedio de un Mac en uso real</div>
+            </div>
+        </div>
+        <p class="meta-line reveal">Un MacBook Air M1 de 2020 sigue siendo perfectamente usable en 2026 — seis años
+            después de su lanzamiento.</p>
+    </section>
+
+    <!-- COMPARATIVA -->
+    <section class="bg-black">
+        <div class="eyebrow reveal">Dato curioso #9</div>
+        <h2 class="section-title reveal">No hay un sistema &quot;ganador&quot;.<br>Hay un sistema para cada trabajo.
+        </h2>
+        <p class="lede reveal">Windows domina el software empresarial y los videojuegos. Linux es el rey indiscutible de
+            los servidores. macOS gana en creatividad, estabilidad y en ser el único camino hacia el ecosistema Apple.
+        </p>
+
+        <div class="compare-wrap reveal">
+            <div class="compare-head3">
+                <div></div>
+                <div class="center">macOS</div>
+                <div class="center">Windows</div>
+                <div class="center">Linux</div>
+            </div>
+            <div class="compare-row3">
+                <div>Desarrollo para Apple (iOS / visionOS)</div>
+                <div class="center check">✓</div>
+                <div class="center cross">—</div>
+                <div class="center cross">—</div>
+            </div>
+            <div class="compare-row3">
+                <div>Servidores en producción a gran escala</div>
+                <div class="center cross">—</div>
+                <div class="center cross">—</div>
+                <div class="center check">✓</div>
+            </div>
+            <div class="compare-row3">
+                <div>Videojuegos y soporte de hardware amplio</div>
+                <div class="center cross">—</div>
+                <div class="center check">✓</div>
+                <div class="center cross">—</div>
+            </div>
+            <div class="compare-row3">
+                <div>Código abierto en la capa completa</div>
+                <div class="center cross">—</div>
+                <div class="center cross">—</div>
+                <div class="center check">✓</div>
+            </div>
+            <div class="compare-row3">
+                <div>Terminal Unix nativa (git, ssh, grep…)</div>
+                <div class="center check">✓</div>
+                <div class="center cross">—</div>
+                <div class="center check">✓</div>
+            </div>
+            <div class="compare-row3">
+                <div>Experiencia hardware + software integrada</div>
+                <div class="center check">✓</div>
+                <div class="center cross">—</div>
+                <div class="center cross">—</div>
+            </div>
+        </div>
+        <p class="meta-line reveal">En encuestas a desarrolladores de 2026: 48.82% usa Windows, 39.89% Linux y 32.97%
+            macOS — muchos usan más de uno.</p>
+    </section>
+
+    <!-- DATOS CURIOSOS RÁPIDOS -->
+    <section class="bg-offwhite">
+        <div class="eyebrow reveal">Para llevarte del stand</div>
+        <h2 class="section-title reveal">Cinco datos para sorprender<br>a tu próximo profesor.</h2>
+
+        <div class="facts-grid reveal">
+            <div class="fact-chip">
+                <div class="fact-num">2007</div>
+                <div class="fact-label">Año en que macOS obtuvo la certificación UNIX oficial, con Mac OS X Leopard.
+                </div>
+            </div>
+            <div class="fact-chip">
+                <div class="fact-num">Open Source</div>
+                <div class="fact-label">Darwin, el núcleo de macOS, es de código abierto bajo licencia de Apple — aunque
+                    la interfaz no lo es.</div>
+            </div>
+            <div class="fact-chip">
+                <div class="fact-num">3 nm</div>
+                <div class="fact-label">El proceso de fabricación de los chips M, la misma escala que usan los
+                    procesadores más avanzados del mundo.</div>
+            </div>
+            <div class="fact-chip">
+                <div class="fact-num">Homebrew</div>
+                <div class="fact-label">El gestor de paquetes no oficial de macOS, tan usado que muchos lo llaman
+                    &quot;el apt-get de Mac&quot;.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="foot-title">Gracias por pasar por el stand macOS</div>
+        <div class="foot-sub">Unix certificado desde 2007. Silicio propio. Un ecosistema pensado para que hardware y
+            software se sientan como una sola cosa.</div>
+        <div class="foot-note">Feria de Sistemas Operativos · Universidad · Información actualizada a 2026</div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const revealEls = document.querySelectorAll('.reveal, .section-title, .lede, .eyebrow');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    io.unobserve(e.target);
+                }
+            });
+        }, {threshold: 0.15});
+        revealEls.forEach(el => io.observe(el));
+
+        // Nav color switch based on section background
+        const nav = document.getElementById('nav');
+        const darkSections = document.querySelectorAll('.bg-black, .hero');
+        const navIO = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    nav.classList.add('dark');
+                }
+            });
+        }, {rootMargin: '-52px 0px -95% 0px'});
+        document.querySelectorAll('section').forEach(sec => {
+            const isDark = sec.classList.contains('bg-black') || sec.classList.contains('hero');
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        nav.classList.toggle('dark', isDark);
+                    }
+                });
+            }, {rootMargin: '-52px 0px -85% 0px', threshold: 0});
+            obs.observe(sec);
+        });
+    </script>
+
+</body>
+
+</html>
